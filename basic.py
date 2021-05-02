@@ -1,4 +1,5 @@
 from classes import *
+import os
 
 def get_data(files):
     result = list() #список, в котором будет храниться результат
@@ -7,6 +8,9 @@ def get_data(files):
     keys = set(files[0].keys)
     for f in files:
         keys &= set(f.keys)
+    
+    #TODO
+    #create different classes. Depends on "*.extension"
     
     #нормализация данных, то есть отбор тех, которые подходят по названию столбца
     for f in files:
@@ -28,10 +32,6 @@ def write_data(data, file_name):
 
 if __name__ == '__main__':
     import csv
-    files = [CSV('csv_data_1.csv'),
-            CSV('csv_data_2.csv'),
-            XML('xml_data.xml'),
-            JSON('json_data.json')]
-            
-    result = get_data(files)
-    write_data(result, 'basic_results.tsv')
+    input_files = os.listdir('input_data')
+    result = get_data(input_files)
+    write_data(result, os.path.join('output_data', 'basic_results.tsv'))
