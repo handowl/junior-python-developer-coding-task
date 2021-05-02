@@ -1,5 +1,6 @@
 from classes import *
 import os
+import csv
 
 def get_data(files):
     result = list() #список, в котором будет храниться результат
@@ -31,7 +32,6 @@ def write_data(data, file_name):
             writer.writerow(row.values())
 
 if __name__ == '__main__':
-    import csv
     input_files = os.listdir('input_data')
     result = get_data(input_files)
     write_data(result, os.path.join('output_data', 'basic_results.tsv'))

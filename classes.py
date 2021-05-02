@@ -1,3 +1,8 @@
+import csv
+import json
+import xml.etree.ElementTree as ET
+
+
 #родительский класс
 class Default: 
     data = list() #список словарей {столбец: значение, ...}
@@ -14,7 +19,6 @@ class Default:
 #класс данных из CSV-файла
 class CSV(Default):
     def __init__(self, file_name):
-        import csv
         with open(file_name) as csv_file:
             reader = csv.DictReader(csv_file)
             self.data = [i for i in reader]
@@ -23,7 +27,6 @@ class CSV(Default):
 #класс данных из XML-файла
 class XML(Default):
     def __init__(self, file_name):
-        import xml.etree.ElementTree as ET
         xml_tree = ET.parse('xml_data.xml')
         root = xml_tree.getroot()
         for obj in root.iter('objects'):
@@ -38,7 +41,6 @@ class XML(Default):
 #класс данных из JSON-файла
 class JSON(Default):
     def __init__(self, file_name):
-        import json
         with open('json_data.json') as json_file:
             reader = json.load(json_file)
             self.data = [i for i in reader['fields']]
