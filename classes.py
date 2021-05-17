@@ -5,12 +5,12 @@ import xml.etree.ElementTree as ET
 
 #родительский класс
 class Default: 
-    data = list() #список словарей {столбец: значение, ...}
-    keys = list() #список только ключей, то есть только столбцов
-    file_name = str
-    
+
     def __init__(self, file_name):
         self.file_name = file_name
+        
+        self.data = list() #список словарей {столбец: значение, ...}
+        self.keys = list() #список только ключей, то есть только столбцов
     
     #функция, отбирающая только нужные столбцы и их значения
     def normalize(self, keys_list):
